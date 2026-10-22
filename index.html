@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Valarpirai Islam Vaalibar Sangam | Growing Together. Serving Our Community.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --forest-900: #003b1b;
+    --forest-800: #14532d;
+    --forest-700: #0c6c4a;
+    --ivory: #faf9f4;
+    --sand: #f5f4ef;
+    --stone: #efeee9;
+    --border: #c0c9be;
+    --ink: #1b1c19;
+    --ink-soft: #404941;
+    --ink-muted: #717970;
+    --gold: #e8c177;
+    --gold-ink: #5e4403;
+    --gold-soft: #ffdea3;
+    --white: #ffffff;
+    --font-latin: 'Inter', system-ui, sans-serif;
+    --font-head: 'Manrope', 'Inter', system-ui, sans-serif;
+    --font-tamil: 'Noto Sans Tamil', 'Inter', sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-latin);
+    color: var(--ink);
+    background: var(--white);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  .ta { font-family: var(--font-tamil); }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  button, input { font: inherit; }
+
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 24px; }
+  section { position: relative; }
+
+  /* Placeholder for photography (Figma image fills are not downloadable here) */
+  .photo {
+    width: 100%;
+    background: linear-gradient(135deg, #cfd8cc 0%, #9fb3a2 45%, #3f6a52 100%);
+    border-radius: 8px;
+    position: relative;
+    overflow: hidden;
+  }
+  .photo::after {
+    content: "";
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,27,12,0.55) 100%);
+  }
+  .photo-label {
+    position: absolute; left: 20px; bottom: 20px; right: 20px; z-index: 2;
+    color: var(--white); font-family: var(--font-latin); font-size: 12px;
+    font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase;
+  }
+
+  /* Eyebrow labels */
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-latin); font-weight: 600; font-size: 12px;
+    letter-spacing: 1.2px; text-transform: uppercase; color: var(--gold-ink);
+  }
+  .eyebrow .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--gold); }
+
+  .h1 { font-family: var(--font-tamil); font-weight: 700; font-size: 48px; line-height: 1.2; color: var(--forest-900); }
+  .h2 { font-family: var(--font-tamil); font-weight: 700; font-size: 36px; line-height: 1.25; color: var(--forest-900); }
+  .h3 { font-family: var(--font-tamil); font-weight: 600; font-size: 22px; line-height: 1.35; color: var(--ink); }
+  .h4 { font-family: var(--font-tamil); font-weight: 600; font-size: 18px; line-height: 1.35; color: var(--ink); }
+  .lead { font-size: 18px; color: var(--ink-soft); line-height: 1.6; }
+  .body { font-size: 16px; color: var(--ink-soft); line-height: 1.65; }
+  .sub-en { font-family: var(--font-latin); font-size: 14px; color: var(--ink-muted); }
+
+  /* Buttons */
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 14px 24px; border-radius: 4px; font-weight: 600; font-size: 15px;
+    border: 1px solid transparent; cursor: pointer; transition: all .2s ease;
+    font-family: var(--font-tamil);
+  }
+  .btn-primary { background: var(--forest-800); color: var(--white); }
+  .btn-primary:hover { background: var(--forest-900); }
+  .btn-outline { background: transparent; color: var(--forest-800); border-color: var(--forest-800); }
+  .btn-outline:hover { background: var(--forest-800); color: var(--white); }
+  .btn-light { background: var(--white); color: var(--forest-800); }
+  .btn-light:hover { background: var(--stone); }
+  .btn-ghost-light { background: transparent; color: var(--white); border-color: rgba(255,255,255,.5); }
+  .btn-ghost-light:hover { background: rgba(255,255,255,.12); }
+  .link-cta { font-weight: 600; font-size: 14px; color: var(--forest-800); display: inline-flex; gap: 6px; align-items: center; }
+  .link-cta:hover { text-decoration: underline; }
+
+  /* Pills */
+  .pill {
+    display: inline-block; padding: 8px 16px; border-radius: 999px;
+    border: 1px solid var(--border); background: var(--white);
+    font-size: 14px; font-weight: 500; color: var(--ink-soft); font-family: var(--font-tamil);
+  }
+  .pill.active { background: var(--forest-800); color: var(--white); border-color: var(--forest-800); }
+
+  /* 1. HERO */
+  .hero { padding: 80px 0 96px; }
+  .hero-grid {
+    display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 48px; align-items: center;
+  }
+  .hero-left { grid-column: 1 / span 6; display: flex; flex-direction: column; gap: 24px; }
+  .hero-right { grid-column: 7 / span 6; }
+  .hero-eyebrow { display: flex; align-items: center; gap: 8px; }
+  .hero-photo {
+    background: white; border: 1px solid var(--border); border-radius: 8px; padding: 9px;
+    box-shadow: 0 4px 10px rgba(20,83,45,.06);
+  }
+  .hero-photo .photo { height: 520px; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .hero-quote { margin-top: 8px; padding-top: 20px; border-top: 1px solid var(--border); }
+
+  /* 3. TRUST STRIP */
+  .trust { background: var(--white); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 33px 0; }
+  .trust-grid { display: grid; grid-template-columns: repeat(4, 1fr); }
+  .value { display: flex; gap: 16px; align-items: flex-start; padding: 0 16px 24px; }
+  .value + .value { border-left: 1px solid var(--border); padding-left: 17px; }
+  .value-icon {
+    flex-shrink: 0; width: 44px; height: 44px; border-radius: 10px;
+    background: var(--stone); display: grid; place-items: center; color: var(--forest-800);
+  }
+  .value-icon svg { width: 22px; height: 22px; }
+  .value p { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+
+  /* 4. ABOUT */
+  .about { padding: 96px 0; }
+  .about-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 48px; align-items: center; }
+  .about-left { grid-column: 1 / span 5; }
+  .about-left .photo { height: 564px; }
+  .about-right { grid-column: 7 / span 6; display: flex; flex-direction: column; gap: 24px; }
+  .icon-blocks { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 8px; }
+  .icon-block { background: var(--sand); border: 1px solid var(--border); border-radius: 4px; padding: 20px; display: flex; flex-direction: column; gap: 10px; }
+  .icon-block .value-icon { background: var(--white); }
+
+  /* 5. EVENTS */
+  .events { background: var(--sand); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 81px 0; }
+  .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .section-head .stack { display: flex; flex-direction: column; gap: 12px; max-width: 640px; }
+  .event-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+  .card {
+    background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 25px;
+    box-shadow: 0 4px 10px rgba(20,83,45,.03); display: flex; flex-direction: column; gap: 20px;
+  }
+  .meta-row { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--ink-muted); }
+  .tag { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--forest-700); }
+  .card .h4 { font-size: 20px; }
+  .event-foot { margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+
+  /* 6. GALLERY (bento) */
+  .gallery { padding: 96px 0; }
+  .gallery-stack { display: flex; flex-direction: column; gap: 32px; }
+  .bento {
+    display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 24px;
+    grid-template-rows: 256px 256px;
+  }
+  .bento-large { grid-column: 1 / span 7; grid-row: 1 / span 2; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: var(--stone); position: relative; }
+  .bento-large .photo { height: 100%; border-radius: 0; }
+  .bento-small { grid-column: 8 / span 5; border-radius: 8px; overflow: hidden; border: 1px solid var(--border); background: var(--stone); position: relative; }
+  .bento-small .photo { height: 100%; border-radius: 0; }
+  .bento-caption { position: absolute; left: 20px; bottom: 20px; right: 20px; z-index: 2; color: var(--white); }
+  .bento-caption .h4 { color: var(--white); font-size: 18px; }
+  .bento-caption .sub-en { color: rgba(255,255,255,.85); font-size: 13px; }
+  .gallery-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; flex-wrap: wrap; }
+  .pills { display: flex; flex-wrap: wrap; gap: 10px; }
+
+  /* 8. PUBLICATIONS */
+  .publications { padding: 96px 0; }
+  .pub-stack { display: flex; flex-direction: column; gap: 48px; }
+  .pub-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 48px; }
+  .pub-sub { grid-column: span 7; display: flex; flex-direction: column; gap: 24px; }
+  .pub-sub.alt { grid-column: span 5; }
+  .pub-title { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; border-bottom: 1px solid var(--border); padding-bottom: 12px; }
+  .pub-row {
+    background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 21px;
+    display: flex; gap: 20px; align-items: center;
+  }
+  .pub-thumb { width: 96px; flex-shrink: 0; aspect-ratio: 3/4; border-radius: 4px; background: linear-gradient(160deg, #e6e3d5, #b7c4b5); }
+  .pub-body { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .pub-body .meta-row .tag { color: var(--gold-ink); }
+
+  /* 9. NOTICE BOARD */
+  .notices { background: var(--sand); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 81px 0; }
+  .board { margin-top: 40px; background: var(--white); border: 1px solid var(--border); border-radius: 4px; }
+  .notice { display: grid; grid-template-columns: 160px 1fr auto; gap: 24px; padding: 28px 32px; align-items: center; }
+  .notice + .notice { border-top: 1px solid var(--border); }
+  .notice-date { font-family: var(--font-head); font-weight: 700; font-size: 18px; color: var(--forest-800); }
+  .notice-date small { display: block; font-family: var(--font-latin); font-size: 12px; color: var(--ink-muted); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+  .notice-tags { display: flex; gap: 8px; margin-bottom: 8px; }
+  .notice-tags span { font-size: 12px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--gold-ink); background: var(--gold-soft); padding: 3px 10px; border-radius: 2px; }
+
+  /* 11. DONATION */
+  .donate { background: var(--ivory); border-top: 1px solid var(--border); padding: 97px 0 96px; }
+  .donate-grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 48px; align-items: center; }
+  .donate-left { grid-column: 1 / span 6; display: flex; flex-direction: column; gap: 24px; }
+  .donate-right { grid-column: 7 / span 6; }
+  .form-panel {
+    background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 33px;
+    box-shadow: 0 4px 10px rgba(20,83,45,.06); display: flex; flex-direction: column; gap: 24px;
+  }
+  .form-head { display: flex; flex-direction: column; gap: 6px; }
+  .field { display: flex; flex-direction: column; gap: 8px; }
+  .field label { font-family: var(--font-tamil); font-size: 14px; font-weight: 600; color: var(--ink); }
+  .field label span { font-family: var(--font-latin); font-weight: 400; color: var(--ink-muted); }
+  .field input {
+    width: 100%; padding: 14px 16px; border: 1px solid var(--border); border-radius: 4px;
+    background: var(--white); font-size: 15px; color: var(--ink); outline: none; transition: border-color .2s, box-shadow .2s;
+  }
+  .field input::placeholder { color: #9aa196; }
+  .field input:focus { border-color: var(--forest-700); box-shadow: 0 0 0 3px rgba(12,108,74,.15); }
+  .field input:invalid:not(:placeholder-shown) { border-color: #b3261e; }
+  .secure-note { font-size: 13px; color: var(--ink-muted); text-align: center; line-height: 1.5; }
+  .form-status { font-size: 14px; font-weight: 600; text-align: center; min-height: 20px; }
+  .form-status.ok { color: var(--forest-700); }
+  .form-status.err { color: #b3261e; }
+  .btn-block { width: 100%; padding: 16px; }
+  .btn[disabled] { opacity: .65; cursor: not-allowed; }
+
+  /* 7. MEMBERSHIP CTA */
+  .cta {
+    background: var(--forest-800); color: var(--white); padding: 80px 128px; position: relative; overflow: hidden;
+  }
+  .cta::before {
+    content: ""; position: absolute; width: 520px; height: 520px; right: -160px; top: -200px;
+    border-radius: 50%; border: 1px solid rgba(232,193,119,.25); pointer-events: none;
+  }
+  .cta::after {
+    content: ""; position: absolute; width: 360px; height: 360px; right: 60px; bottom: -220px;
+    border-radius: 50%; background: radial-gradient(circle, rgba(232,193,119,.18), transparent 70%); pointer-events: none;
+  }
+  .cta-inner { position: relative; z-index: 2; max-width: 880px; display: flex; flex-direction: column; gap: 24px; }
+  .cta .eyebrow { color: var(--gold-soft); }
+  .cta .h2 { color: var(--white); }
+  .cta .lead { color: rgba(255,255,255,.85); }
+  .cta-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; }
+
+  /* 10. LEADERSHIP */
+  .leaders { padding: 96px 0; }
+  .leaders-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 40px; }
+  .leader {
+    background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 21px;
+    display: flex; flex-direction: column; align-items: center; gap: 16px; text-align: center;
+  }
+  .avatar {
+    width: 140px; height: 140px; border-radius: 50%;
+    background: linear-gradient(160deg, #d9e2d6, #7f9a86);
+    border: 4px solid var(--stone);
+  }
+  .leader .h4 { font-size: 17px; }
+  .leader .role { font-size: 13px; font-weight: 600; color: var(--forest-700); }
+  .leader .desc { font-size: 13px; color: var(--ink-muted); line-height: 1.5; font-family: var(--font-tamil); }
+
+  /* Footer spacer (no footer node exists in the Figma frame) */
+  .page-end { height: 0; }
+
+  /* Responsive */
+  @media (max-width: 1100px) {
+    .cta { padding: 64px 48px; }
+    .leaders-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 900px) {
+    .hero-left, .hero-right, .about-left, .about-right, .donate-left, .donate-right,
+    .pub-sub, .pub-sub.alt { grid-column: 1 / -1; }
+    .hero-grid, .about-grid, .donate-grid, .pub-grid { gap: 32px; }
+    .hero { padding: 48px 0 64px; }
+    .h1 { font-size: 36px; }
+    .h2 { font-size: 28px; }
+    .hero-photo .photo { height: 360px; }
+    .about-left .photo { height: 360px; }
+    .trust-grid { grid-template-columns: repeat(2, 1fr); row-gap: 16px; }
+    .value:nth-child(3) { border-left: 0; padding-left: 16px; }
+    .event-grid { grid-template-columns: 1fr; }
+    .bento { grid-template-columns: 1fr; grid-template-rows: auto; }
+    .bento-large, .bento-small { grid-column: 1 / -1; grid-row: auto; height: 256px; }
+    .notice { grid-template-columns: 1fr; gap: 12px; }
+    .cta { padding: 56px 24px; }
+  }
+  @media (max-width: 560px) {
+    .wrap { padding: 0 16px; }
+    .trust-grid { grid-template-columns: 1fr; }
+    .value + .value { border-left: 0; padding-left: 16px; }
+    .leaders-grid { grid-template-columns: 1fr; }
+    .icon-blocks { grid-template-columns: 1fr; }
+    .form-panel { padding: 22px; }
+    .pub-row { flex-direction: column; align-items: flex-start; }
+    .pub-thumb { width: 100%; height: 160px; aspect-ratio: auto; }
+    .h1 { font-size: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 1. HERO -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div class="hero-eyebrow">
+          <span class="eyebrow">Community</span>
+          <span class="dot" style="width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;"></span>
+          <span class="eyebrow">Service</span>
+          <span class="dot" style="width:6px;height:6px;border-radius:50%;background:var(--gold);display:inline-block;"></span>
+          <span class="eyebrow">Unity</span>
+        </div>
+        <h1 class="h1 ta">ஒற்றுமையால் உயர்வோம், சேவையால் சமூகத்தை வளர்ப்போம்.</h1>
+        <p class="h3 ta" style="color:var(--forest-800);font-weight:600;">Growing Together. Serving Our Community.</p>
+        <p class="body ta">இளைஞர்களின் ஆற்றலையும் மக்களின் ஒத்துழைப்பையும் ஒன்றிணைத்து, கல்வி விழிப்புணர்வு, சமூக நலன் மற்றும் மனிதநேயச் சேவைகள் மூலம் நம் பகுதியின் முன்னேற்றத்திற்குப் பங்களிப்போம்.</p>
+        <p class="body">We bring people together through youth participation, educational awareness, community welfare, and meaningful service to help build a stronger and more compassionate community.</p>
+        <div class="hero-actions">
+          <a href="#membership" class="btn btn-primary ta">எங்களுடன் இணையுங்கள் / Join Our Community</a>
+          <a href="#about" class="btn btn-outline ta">எங்கள் செயல்பாடுகள் / Explore Our Activities</a>
+        </div>
+        <div class="hero-quote">
+          <a href="#about" class="link-cta">Learn more about our mission &rarr;</a>
+        </div>
+      </div>
+
+      <div class="hero-right">
+        <div class="hero-photo">
+          <div class="photo">
+            <div class="photo-label ta">கிராமிய விழிப்புணர்வுப் பணி • Tamil Nadu Youth Civic Drive</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. TRUST & VALUES STRIP -->
+<section class="trust">
+  <div class="wrap">
+    <div class="trust-grid">
+      <div class="value">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg>
+        </div>
+        <div>
+          <p class="ta" style="font-weight:600;color:var(--ink);font-size:15px;">கல்வி / Education</p>
+          <p>Encouraging learning, scholarship support, and educational awareness.</p>
+        </div>
+      </div>
+      <div class="value">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2"/></svg>
+        </div>
+        <div>
+          <p class="ta" style="font-weight:600;color:var(--ink);font-size:15px;">இளைஞர் மேம்பாடு / Youth Development</p>
+          <p>Inspiring responsible civic leadership and proactive community participation.</p>
+        </div>
+      </div>
+      <div class="value">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg>
+        </div>
+        <div>
+          <p class="ta" style="font-weight:600;color:var(--ink);font-size:15px;">சமூக நலன் / Community Welfare</p>
+          <p>Supporting meaningful grassroots relief and health care initiatives.</p>
+        </div>
+      </div>
+      <div class="value">
+        <div class="value-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20v-1a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v1"/><path d="M15 15a4 4 0 0 1 6 3v2"/></svg>
+        </div>
+        <div>
+          <p class="ta" style="font-weight:600;color:var(--ink);font-size:15px;">ஒற்றுமை / Unity</p>
+          <p>Bringing people together through sustained mutual cooperation and empathy.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. ABOUT US PREVIEW -->
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="about-grid">
+      <div class="about-left">
+        <div class="photo"></div>
+      </div>
+      <div class="about-right">
+        <span class="eyebrow"><span class="dot"></span> நமது பாரம்பரியம் • ESTABLISHED IN TAMIL NADU</span>
+        <h2 class="h2 ta">எங்களைப் பற்றி / ABOUT US</h2>
+        <p class="h3 ta" style="color:var(--forest-800);">சிறிய முயற்சிகள். பெரிய மாற்றங்கள்.</p>
+        <p class="sub-en" style="font-size:16px;color:var(--ink-soft);font-weight:500;">Small Efforts. Meaningful Change.</p>
+        <p class="body ta">வளர்பிறை இஸ்லாம் வாலிபர் சங்கம் என்பது தமிழகத்தின் அடித்தட்டு மக்களின் வாழ்வாதாரத்தை உயர்த்தவும், இளைஞர்களின் நற்பண்புகளை வளர்த்தெடுக்கவும் அர்ப்பணிக்கப்பட்ட ஓர் தன்னார்வ சமூக அமைப்பாகும்.</p>
+        <p class="body">Rooted in deep moral integrity and civic accountability, our association channelizes youthful energy toward literacy, healthcare assistance, and cultural harmony. We believe that lasting societal elevation begins with disciplined community participation.</p>
+
+        <div class="icon-blocks">
+          <div class="icon-block">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4"/></svg>
+            </div>
+            <p class="h4 ta">எங்கள் நோக்கம் / Purpose</p>
+            <p class="body ta" style="font-size:14px;">கல்வி வசதியற்ற மாணவர்களுக்குக் கரம் கொடுத்தல், எளியோருக்கு மருத்துவ அவசர உதவி வழங்குதல் மற்றும் சமூக நல்லிணக்கத்தை வலுப்படுத்துதல்.</p>
+          </div>
+          <div class="icon-block">
+            <div class="value-icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg>
+            </div>
+            <p class="h4 ta">எங்கள் தொலைநோக்கு / Vision</p>
+            <p class="body ta" style="font-size:14px;">அனைத்துத் துறைகளிலும் தற்சார்பு, கல்வி விழிப்புணர்வு மற்றும் நற்பண்புகள் நிறைந்த முன்மாதிரி இளைஞர் சமுதாயத்தை உருவாக்குதல்.</p>
+          </div>
+        </div>
+
+        <div>
+          <a href="#leadership" class="link-cta ta">எங்களைப் பற்றி மேலும் அறிய / Discover Our Mission &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. UPCOMING EVENTS -->
+<section class="events" id="events">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="stack">
+        <span class="eyebrow"><span class="dot"></span> நிகழ்ச்சி நிரல் / EVENTS CALENDAR</span>
+        <h2 class="h2 ta">வரவிருக்கும் நிகழ்வுகள் / Upcoming Events</h2>
+        <p class="body ta">எங்கள் அடுத்தடுத்த நிகழ்ச்சிகளில் பங்கேற்று சமூக முன்னேற்றத்திற்கு உங்கள் பங்களிப்பை வழங்குங்கள்.</p>
+      </div>
+      <a href="#events" class="btn btn-outline ta">View All Events</a>
+    </div>
+
+    <div class="event-grid">
+      <article class="card">
+        <div class="meta-row"><span class="tag">சமூக நலம் / Welfare</span></div>
+        <div>
+          <h3 class="h4 ta">Community Welfare Awareness Programme</h3>
+          <p class="body ta" style="margin-top:8px;font-size:15px;">சமூக நல விழிப்புணர்வு முகாம்</p>
+          <p class="body ta" style="margin-top:8px;font-size:14px;">அடிப்படை நலத்திட்டங்கள் மற்றும் சுகாதார விழிப்புணர்வை மக்களிடம் கொண்டு சேர்க்கும் கூட்டு முகாம்.</p>
+        </div>
+        <div class="event-foot">
+          <div class="sub-en">Date to be announced<br />Location to be announced</div>
+          <a href="#events" class="link-cta ta">விவரங்கள் / View Details &rarr;</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="meta-row"><span class="tag">கல்வி / Education</span></div>
+        <div>
+          <h3 class="h4 ta">இளைஞர் கல்வி வழிகாட்டுதல் நிகழ்ச்சி</h3>
+          <p class="sub-en" style="margin-top:6px;">Youth Education Guidance Event</p>
+          <p class="body ta" style="margin-top:8px;font-size:14px;">பள்ளி, கல்லூரி மாணவர்களுக்கான உயர் கல்வி வாய்ப்புகள் மற்றும் தொழில் வழிகாட்டுதல் பயிலரங்கம்.</p>
+        </div>
+        <div class="event-foot">
+          <div class="sub-en">Date to be announced<br />Location to be announced</div>
+          <a href="#events" class="link-cta ta">விவரங்கள் / View Details &rarr;</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="meta-row"><span class="tag">தன்னார்வலர் / Volunteers</span></div>
+        <div>
+          <h3 class="h4 ta">Volunteer Planning Meet</h3>
+          <p class="body ta" style="margin-top:8px;font-size:14px;">சங்க உறுப்பினர்கள், பொதுமக்கள் ஒன்றிணைந்து எதிர்கால நலப்பணிகளைத் திட்டமிடும் கலந்துரையாடல்.</p>
+        </div>
+        <div class="event-foot">
+          <div class="sub-en">Date to be announced<br />Location to be announced</div>
+          <a href="#events" class="link-cta ta">விவரங்கள் / View Details &rarr;</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 6. EVENTS GALLERY (ASYMMETRICAL BENTO) -->
+<section class="gallery" id="gallery">
+  <div class="wrap">
+    <div class="gallery-stack">
+      <div class="gallery-head">
+        <div style="display:flex;flex-direction:column;gap:12px;max-width:640px;">
+          <span class="eyebrow"><span class="dot"></span> புகைப்படத் தொகுப்பு / ARCHIVAL GALLERY</span>
+          <h2 class="h2 ta">நம் பயணத்தின் நினைவுகள் / Moments That Bring Us Together</h2>
+          <p class="body ta">எங்கள் நிகழ்வுகள், சமூகச் சேவை முயற்சிகள் மற்றும் இளைஞர் செயல்பாடுகளின் நினைவுகளைப் புகைப்படங்கள் மூலம் காணுங்கள்.</p>
+        </div>
+        <a href="#gallery" class="btn btn-outline ta">View Full Gallery</a>
+      </div>
+
+      <div class="pills" role="tablist">
+        <span class="pill active">All Activities</span>
+        <span class="pill ta">Community Service</span>
+        <span class="pill ta">Education</span>
+        <span class="pill ta">Youth Activities</span>
+        <span class="pill ta">Community Events</span>
+      </div>
+
+      <div class="bento">
+        <div class="bento-large">
+          <div class="photo"></div>
+          <div class="bento-caption">
+            <div class="meta-row" style="color:rgba(255,255,255,.85);margin-bottom:6px;"><span class="tag" style="color:var(--gold-soft);">Community Service</span></div>
+            <p class="h4 ta">Community Service Drive</p>
+          </div>
+        </div>
+        <div class="bento-small" style="grid-row:1;">
+          <div class="photo"></div>
+          <div class="bento-caption">
+            <p class="h4 ta">வருடாந்திர கல்வி உபகரணங்கள் வழங்கல் விழா</p>
+            <p class="sub-en">Annual Educational Aids Distribution Ceremony</p>
+          </div>
+        </div>
+        <div class="bento-small" style="grid-row:2;">
+          <div class="photo"></div>
+          <div class="bento-caption">
+            <p class="h4 ta">இலவச மருத்துவ ஆலோசனை முகாம்</p>
+            <p class="sub-en">இளைஞர் கலந்துரையாடல் பாசறை / Youth Discussion Forum</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. NEWSLETTERS & PUBLICATIONS -->
+<section class="publications" id="publications">
+  <div class="wrap">
+    <div class="pub-stack">
+      <div class="section-head">
+        <div class="stack">
+          <span class="eyebrow"><span class="dot"></span> செய்திகள், சிந்தனைகள், சமூகக் கதைகள்.</span>
+          <h2 class="h2 ta">News, Ideas, and Community Stories.</h2>
+        </div>
+        <a href="#publications" class="btn btn-outline ta">View All Publications</a>
+      </div>
+
+      <div class="pub-grid">
+        <!-- Subsection A: Newsletters -->
+        <div class="pub-sub">
+          <div class="pub-title">
+            <h3 class="h3 ta">செய்தி மடல்கள் / Newsletters</h3>
+          </div>
+
+          <div class="pub-row">
+            <div class="pub-thumb"></div>
+            <div class="pub-body">
+              <div class="meta-row"><span class="tag">Issue 12 • Jan - Mar 2025</span><span>&middot; Quarterly</span></div>
+              <p class="h4 ta">வளர்பிறை செய்தி மடல் - பதிப்பு 12</p>
+              <p class="body ta" style="font-size:14px;">கடந்த காலாண்டில் நடைபெற்ற கல்வி முகாம்களின் தொகுப்பு மற்றும் வரவு செலவு கணக்கு சுருக்கம்.</p>
+              <a href="#publications" class="link-cta">Read Newsletter (PDF) &rarr;</a>
+            </div>
+          </div>
+
+          <div class="pub-row">
+            <div class="pub-thumb"></div>
+            <div class="pub-body">
+              <div class="meta-row"><span class="tag">Issue 11 • Oct - Dec 2024</span><span>&middot; Quarterly</span></div>
+              <p class="h4 ta">வளர்பிறை செய்தி மடல் - பதிப்பு 11</p>
+              <p class="body ta" style="font-size:14px;">குளிர்கால நிவாரணப் பணிகள், மருத்துவ முகாம் நிறைவு அறிக்கை மற்றும் தன்னார்வலர்களின் அனுபவப் பகிர்வு.</p>
+              <a href="#publications" class="link-cta">Read Newsletter (PDF) &rarr;</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Subsection B: Magazine -->
+        <div class="pub-sub alt">
+          <div class="pub-title">
+            <h3 class="h3 ta">இதழ்கள் / Valarpirai Magazine</h3>
+          </div>
+
+          <div class="pub-row" style="flex-direction:column;align-items:flex-start;">
+            <div class="pub-thumb" style="width:100%;height:200px;aspect-ratio:auto;"></div>
+            <div class="pub-body">
+              <div class="meta-row"><span class="tag">Annual Special Edition • 2024-2025</span></div>
+              <p class="h4 ta">வளர்பிறை மலர்</p>
+              <p class="body ta" style="font-size:14px;">இளைஞர் விழிப்புணர்வு சிறப்பு மலர். சமூக சிந்தனையாளர்களின் கட்டுரைகள், இளைஞர்களின் கவிதைகள் மற்றும் சங்கத்தின் 10 ஆண்டுகால வரலாற்றுச் சுவடுகள்.</p>
+              <a href="#publications" class="link-cta">Read Magazine &rarr;</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. ANNOUNCEMENTS (NOTICE BOARD) -->
+<section class="notices" id="announcements">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="stack">
+        <span class="eyebrow"><span class="dot"></span> தகவல் பலகை / OFFICIAL BULLETIN</span>
+        <h2 class="h2 ta">அறிவிப்புகள் / Latest Announcements</h2>
+        <p class="body ta">சங்கத்தின் உத்தியோகபூர்வ பொது அறிவிப்புகள் மற்றும் உறுப்பினர் சுற்றறிக்கைகள்.</p>
+      </div>
+    </div>
+
+    <div class="board">
+      <div class="notice">
+        <div class="notice-date">15 APR 2025<small>Public</small></div>
+        <div>
+          <div class="notice-tags"><span>பொது</span><span>அறிவிப்பு</span></div>
+          <p class="h4 ta">ஆண்டுப் பொதுக்குழுக் கூட்டம் குறித்த அறிவிப்பு</p>
+          <p class="body ta" style="font-size:14px;margin-top:6px;">2024-2025-ஆம் ஆண்டிற்கான பொதுக்குழுக் கூட்டம் மற்றும் செயற்குழு உறுப்பினர் மறுஆய்வுக் கூட்டம் நடைபெற உள்ளது.</p>
+        </div>
+        <a href="#announcements" class="link-cta ta">Read More &rarr;</a>
+      </div>
+
+      <div class="notice">
+        <div class="notice-date">02 MAY 2025<small>Education</small></div>
+        <div>
+          <div class="notice-tags"><span>கல்வி</span><span>உதவி</span></div>
+          <p class="h4 ta">Scholarship Drive: உயர்கல்வி உதவித்தொகை விண்ணப்பங்கள் வரவேற்பு</p>
+          <p class="body ta" style="font-size:14px;margin-top:6px;">பொருளாதாரத்தில் பின்தங்கிய தகுதியுள்ள கல்லூரி மாணவர்களுக்கான 2025 ஆம் ஆண்டு கல்வி உதவித்தொகை விண்ணப்பம் துவக்கம்.</p>
+        </div>
+        <a href="#announcements" class="link-cta ta">Read More &rarr;</a>
+      </div>
+
+      <div class="notice">
+        <div class="notice-date">20 MAY 2025<small>Membership</small></div>
+        <div>
+          <div class="notice-tags"><span>உறுப்பினர்</span><span>சேர்க்கை</span></div>
+          <p class="h4 ta">Membership: புதிய இளைஞர் உறுப்பினர் பதிவு முகாம்</p>
+          <p class="body ta" style="font-size:14px;margin-top:6px;">சமூகப் பணியில் ஆர்வமுள்ள 18 முதல் 35 வயது வரையிலான இளைஞர்களுக்கான உறுப்பினர் சேர்க்கை முகாம் விவரங்கள்.</p>
+        </div>
+        <a href="#announcements" class="link-cta ta">Read More &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. HIGH-VISIBILITY DONATION -->
+<section class="donate" id="donate">
+  <div class="wrap">
+    <div class="donate-grid">
+      <div class="donate-left">
+        <span class="eyebrow"><span class="dot"></span> வெளிப்படையான மக்கள் நிதி • COMMUNITY SUPPORT</span>
+        <h2 class="h2 ta">உங்கள் பங்களிப்பு, சமூகத்தின் முன்னேற்றம்</h2>
+        <p class="sub-en" style="font-size:16px;color:var(--ink-soft);font-weight:500;">Your Contribution Can Make a Tangible Difference</p>
+        <p class="body ta">வளர்பிறை இஸ்லாம் வாலிபர் சங்கத்தின் அனைத்துச் சேவைகளும் பொதுமக்களின் தன்னார்வ நிதிப்பங்களிப்பு மற்றும் உறுப்பினர்களின் மாதாந்திர சந்தா மூலமே முன்னெடுக்கப்படுகின்றன. உங்கள் சிறு உதவியும் ஒரு மாணவனின் கல்விக் கனவையோ, ஒரு குடும்பத்தின் மருத்துவத் தேவையையோ நிறைவேற்ற உதவும்.</p>
+        <p class="body ta">எங்கள் அனைத்து வரவு-செலவுகளும் ஆண்டுதோறும் வெளிப்படையாகத் தணிக்கை செய்யப்பட்டு உறுப்பினர்களுக்கு அறிவிக்கப்படுகின்றன.</p>
+      </div>
+
+      <div class="donate-right">
+        <form class="form-panel" id="donationForm" novalidate>
+          <div class="form-head">
+            <h3 class="h3 ta">நன்கொடைப் படிவம் / Donation Portal</h3>
+            <p class="sub-en">பாதுகாப்பான மற்றும் வெளிப்படையான பங்களிப்பு முறை</p>
+          </div>
+
+          <div class="field">
+            <label for="name" class="ta">பெயர் / Full Name <span>*</span></label>
+            <input type="text" id="name" name="name" placeholder="உங்கள் பெயர்" required />
+          </div>
+
+          <div class="field">
+            <label for="email" class="ta">மின்னஞ்சல் / Email <span>*</span></label>
+            <input type="email" id="email" name="email" placeholder="name@example.com" required />
+          </div>
+
+          <div class="field">
+            <label for="phone" class="ta">தொலைபேசி / Phone <span>*</span></label>
+            <input type="tel" id="phone" name="phone" placeholder="+91 00000 00000" required />
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block ta" id="submitBtn">பாதுகாப்பாக நன்கொடை வழங்க / Donate Securely</button>
+
+          <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+
+          <p class="secure-note">Valarpirai Islam Vaalibar Sangam is a verified non-profit civic youth body in Tamil Nadu. Official digital receipt will be emailed instantly.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. MEMBERSHIP CALL-TO-ACTION -->
+<section class="cta" id="membership">
+  <div class="cta-inner">
+    <span class="eyebrow"><span class="dot"></span> இளைஞர்களின் கரம் இணையட்டும் • Stronger When United</span>
+    <h2 class="h2 ta">உங்கள் நேரமும் திறமையும் சமூகத்திற்கு வலுசேர்க்கும்.</h2>
+    <p class="sub-en" style="font-size:18px;color:rgba(255,255,255,.9);font-weight:500;">Your Time. Your Skills. Your Community.</p>
+    <p class="lead ta">நமது பகுதியின் வளர்ச்சிக்கும் மக்களின் நல்வாழ்விற்கும் உங்கள் சிந்தனைகளையும் உழைப்பையும் பகிர்ந்து கொள்ளுங்கள். தன்னார்வலராக இணைந்து மாற்றத்தின் அங்கமாக வாருங்கள்.</p>
+    <div class="cta-actions">
+      <a href="#membership" class="btn btn-light ta">உறுப்பினராக இணையுங்கள் / Become a Member</a>
+      <a href="#membership" class="btn btn-ghost-light ta">தன்னார்வலராக இணையுங்கள் / Volunteer With Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- 10. EXECUTIVE COMMITTEE -->
+<section class="leaders" id="leadership">
+  <div class="wrap">
+    <div class="section-head">
+      <div class="stack">
+        <span class="eyebrow"><span class="dot"></span> தலைமைப் பொறுப்பாளர்கள் / LEADERSHIP</span>
+        <h2 class="h2 ta">எங்கள் சங்கத்தின் நிர்வாகக் குழு</h2>
+        <p class="sub-en" style="font-size:16px;color:var(--ink-soft);font-weight:500;">Meet Our Dedicated Leadership Team</p>
+        <p class="body ta">பொதுநல நோக்கோடு சங்கத்தின் பணிகளை வழிநடத்தும் தன்னார்வ வழிகாட்டிகள்.</p>
+      </div>
+      <a href="#leadership" class="btn btn-outline ta">View All Members</a>
+    </div>
+
+    <div class="leaders-grid">
+      <div class="leader">
+        <div class="avatar"></div>
+        <div>
+          <p class="h4 ta">முனைவர் அ. முஹம்மது ரஃபீக்</p>
+          <p class="role ta" style="margin-top:4px;">தலைவர் / President</p>
+        </div>
+        <p class="desc">சமூக விழிப்புணர்வு மற்றும் கல்வி வழிகாட்டலில் 15 ஆண்டு கால அனுபவம்.</p>
+      </div>
+      <div class="leader">
+        <div class="avatar"></div>
+        <div>
+          <p class="h4 ta">க. சிராஜுதீன்</p>
+          <p class="role ta" style="margin-top:4px;">செயலாளர் / General Secretary</p>
+        </div>
+        <p class="desc">இளைஞர் பாசறை ஒருங்கிணைப்பு மற்றும் நிவாரணப் பணிகளின் பொறுப்பாளர்.</p>
+      </div>
+      <div class="leader">
+        <div class="avatar"></div>
+        <div>
+          <p class="h4 ta">எஸ். நூர் முஹம்மது</p>
+          <p class="role ta" style="margin-top:4px;">பொருளாளர் / Treasurer</p>
+        </div>
+        <p class="desc">சங்க நிதி மேலாண்மை மற்றும் தணிக்கை அறிக்கைகளின் மேற்பார்வையாளர்.</p>
+      </div>
+      <div class="leader">
+        <div class="avatar"></div>
+        <div>
+          <p class="h4 ta">எம். இப்ராஹீம் அலி</p>
+          <p class="role ta" style="margin-top:4px;">செயற்குழு உறுப்பினர் / Executive Member</p>
+        </div>
+        <p class="desc">களப்பணிகள் மற்றும் மாணவர் தொடர்பு பிரிவின் ஒருங்கிணைப்பாளர்.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    // Deployed Google Apps Script Web app URL
+    var SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwz75sea0u9Wyoe_1PTLHD2RxK5VRBWJ5xHw1wdqXor9fZvdPZlVHGbCkhlMky-9epEGA/exec";
+
+    var form = document.getElementById("donationForm");
+    var nameInput = document.getElementById("name");
+    var emailInput = document.getElementById("email");
+    var phoneInput = document.getElementById("phone");
+    var submitBtn = document.getElementById("submitBtn");
+    var status = document.getElementById("formStatus");
+
+    function showSuccess() {
+      status.className = "form-status ok";
+      status.textContent = "நன்றி! Thank you, your details have been received.";
+      form.reset();
+      submitBtn.disabled = false;
+      submitBtn.textContent = "பாதுகாப்பாக நன்கொடை வழங்க / Donate Securely";
+    }
+
+    function showError() {
+      status.className = "form-status err";
+      status.textContent = "Something went wrong. Please try again.";
+      submitBtn.disabled = false;
+      submitBtn.textContent = "பாதுகாப்பாக நன்கொடை வழங்க / Donate Securely";
+    }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      var name = nameInput.value.trim();
+      var email = emailInput.value.trim();
+      var phone = phoneInput.value.trim();
+
+      if (!name || !email || !phone) {
+        status.className = "form-status err";
+        status.textContent = "Please fill in name, email and phone.";
+        return;
+      }
+
+      status.className = "form-status";
+      status.textContent = "";
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+
+      var url = SCRIPT_URL + "?" + new URLSearchParams({ name: name, email: email, phone: phone });
+
+      fetch(url, { method: "GET", mode: "no-cors" })
+        .then(function () { showSuccess(); })
+        .catch(function () { showError(); });
+    });
+  })();
+</script>
+
+</body>
+</html>
